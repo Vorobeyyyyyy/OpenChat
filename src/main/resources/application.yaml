@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/openchat
+    username: postgres
+    password: postgres
+  liquibase:
+#    Disabled for faster development on beginning
+    enabled: false
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+openchat:
+  security:
+    secret: asfslhoi12418hikljhgfdsa
