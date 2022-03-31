@@ -9,5 +9,7 @@ import com.vorobeyyyyyy.openchat.model.domain.User;
 
 public interface UserRepository extends JpaRepository<User, UUID> {
 
-	Optional<User> findByUsernameAndPassword(String username, String encode);
+	Optional<User> findByMobilePhone(String phone);
+
+	User findByUuid(UUID uuid);
 }

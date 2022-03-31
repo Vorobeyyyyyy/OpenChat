@@ -8,4 +8,5 @@ import lombok.Data;
 public class ExceptionDto {
 	private int code;
 	private String message;
+	private String messageKey;
 }

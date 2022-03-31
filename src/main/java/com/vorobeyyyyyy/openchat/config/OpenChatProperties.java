@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 
 import lombok.Data;
 
+import java.time.Duration;
+
 @EnableConfigurationProperties
 @ConfigurationProperties(prefix = "openchat")
 @Component
@@ -17,6 +19,17 @@ public class OpenChatProperties {
 	@Data
 	public static class Security {
 
-		private String secret;
+		private Jwt jwt;
+
+		private Duration resendCodeTimeout;
+
+		@Data
+		public static class Jwt {
+
+			private String secret;
+
+			private Duration expiration;
+		}
+
 	}
 }

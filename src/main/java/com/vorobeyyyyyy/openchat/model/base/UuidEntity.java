@@ -5,6 +5,7 @@ import java.util.UUID;
 
 import javax.persistence.*;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.hibernate.annotations.GenericGenerator;
@@ -18,11 +19,13 @@ import com.vorobeyyyyyy.openchat.model.domain.User;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @MappedSuperclass
 @Getter
 @Setter
 @NoArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 public abstract class UuidEntity {
 
 	@Id
@@ -33,14 +36,6 @@ public abstract class UuidEntity {
 	)
 	@Column(nullable = false, updatable = false, unique = true)
 	protected UUID uuid;
-
-	@ManyToOne
-	@CreatedBy
-	protected User createdBy;
-
-	@ManyToOne
-	@LastModifiedBy
-	protected User lastModifiedBy;
 
 	@Column(nullable = false, updatable = false)
 	@CreatedDate
@@ -71,5 +66,9 @@ public abstract class UuidEntity {
 		return getClass().getSimpleName() + "{" +
 			"uuid=" + uuid
 			+ "}";
+	}
+
+	@PrePersist
+	protected void prePersist() {
 	}
 }

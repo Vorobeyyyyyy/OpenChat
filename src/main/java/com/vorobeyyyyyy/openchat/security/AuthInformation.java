@@ -3,6 +3,7 @@ package com.vorobeyyyyyy.openchat.security;
 import java.util.List;
 import java.util.UUID;
 
+import com.vorobeyyyyyy.openchat.model.enumerated.Role;
 import org.springframework.security.core.GrantedAuthority;
 
 import lombok.Builder;
@@ -14,11 +15,11 @@ public class AuthInformation {
 
 	private String token;
 
-	private long expiresIn;
+	private long expires;
 
 	private String username;
 
 	private UUID userUuid;
 
-	private List<GrantedAuthority> authorities;
+	private List<Role> authorities;
 }
