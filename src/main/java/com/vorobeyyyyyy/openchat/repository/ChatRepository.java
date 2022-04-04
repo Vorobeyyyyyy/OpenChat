@@ -1,27 +1,46 @@
 package com.vorobeyyyyyy.openchat.repository;
 
+import com.querydsl.core.BooleanBuilder;
 import com.vorobeyyyyyy.openchat.model.domain.Chat;
-import com.vorobeyyyyyy.openchat.model.domain.Chat_;
-import com.vorobeyyyyyy.openchat.model.dto.ChatFilter;
+import com.vorobeyyyyyy.openchat.model.domain.QChat;
+import com.vorobeyyyyyy.openchat.model.domain.QUser;
+import com.vorobeyyyyyy.openchat.model.domain.User;
+import com.vorobeyyyyyy.openchat.model.dto.request.ChatFilter;
+import com.vorobeyyyyyy.openchat.model.enumerated.ChatType;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
-public interface ChatRepository extends JpaRepository<Chat, UUID>, JpaSpecificationExecutor<Chat> {
+public interface ChatRepository extends JpaRepository<Chat, UUID>, BaseCustomRepository {
 
-    Page<Chat> findAllBy(Specification<Chat> specification, Pageable pageable);
+    QChat chat = QChat.chat;
+    QUser user = QUser.user;
 
-    default Page<Chat> findAll(ChatFilter filter, Pageable pageable) {
-        Specification<Chat> specification = (root, query, criteriaBuilder) -> {
-            if (filter.getName() != null) {
-                query.where(criteriaBuilder.like(root.get(Chat_.NAME), filter.getName()));
-            }
-            return query.getRestriction();
-        };
-        return findAllBy(specification, pageable);
+    Optional<Chat> findByUsersContainsAndUuid(User user, UUID chatUuid);
+
+    default Page<Chat> findAll(User user, ChatFilter filter, Pageable pageable) {
+        BooleanBuilder builder = new BooleanBuilder();
+        if (StringUtils.isNotEmpty(filter.getName())) {
+            builder.and(chat.name.containsIgnoreCase(filter.getName()));
+        }
+
+        return toPage(selectFrom(chat, pageable)
+                .where(chat.users.contains(user), builder));
+    }
+
+    default boolean privateChatExists(List<User> users) {
+        return selectFrom(chat)
+                .where(
+                        chat.type.eq(ChatType.PRIVATE),
+                        chat.users.contains(users.get(0)),
+                        chat.users.contains(users.get(1)),
+                        chat.users.size().eq(2)
+                )
+                .fetchOne() != null;
     }
 }

@@ -5,10 +5,9 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.Claim;
 import com.vorobeyyyyyy.openchat.config.OpenChatProperties;
 import com.vorobeyyyyyy.openchat.model.domain.User;
-import com.vorobeyyyyyy.openchat.model.dto.TokenDto;
+import com.vorobeyyyyyy.openchat.model.dto.response.TokenDto;
 import com.vorobeyyyyyy.openchat.model.enumerated.Role;
 import com.vorobeyyyyyy.openchat.security.AuthInformation;
-import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;

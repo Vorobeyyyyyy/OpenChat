@@ -2,7 +2,7 @@ package com.vorobeyyyyyy.openchat.model.converter;
 
 import com.vorobeyyyyyy.openchat.model.domain.Chat;
 import com.vorobeyyyyyy.openchat.model.domain.User;
-import com.vorobeyyyyyy.openchat.model.dto.ChatDto;
+import com.vorobeyyyyyy.openchat.model.dto.response.ChatDto;
 import com.vorobeyyyyyy.openchat.model.enumerated.ChatType;
 import com.vorobeyyyyyy.openchat.util.AuthUtils;
 import org.springframework.stereotype.Component;

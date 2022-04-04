@@ -2,16 +2,16 @@ package com.vorobeyyyyyy.openchat.service.impl;
 
 import com.vorobeyyyyyy.openchat.exception.WrongCodeException;
 import com.vorobeyyyyyy.openchat.model.domain.User;
-import com.vorobeyyyyyy.openchat.model.dto.LoginRequestDto;
-import com.vorobeyyyyyy.openchat.model.dto.TokenDto;
-import com.vorobeyyyyyy.openchat.model.dto.UserDto;
+import com.vorobeyyyyyy.openchat.model.dto.request.LoginRequestDto;
+import com.vorobeyyyyyy.openchat.model.dto.response.TokenDto;
+import com.vorobeyyyyyy.openchat.model.dto.response.UserDto;
 import com.vorobeyyyyyy.openchat.model.enumerated.Role;
 import com.vorobeyyyyyy.openchat.repository.RedisRepository;
 import com.vorobeyyyyyy.openchat.repository.UserRepository;
-import com.vorobeyyyyyy.openchat.security.AuthInformation;
 import com.vorobeyyyyyy.openchat.service.RefreshTokenService;
 import com.vorobeyyyyyy.openchat.service.UserService;
 import com.vorobeyyyyyy.openchat.util.AuthUtils;
+import com.vorobeyyyyyy.openchat.util.ExceptionUtils;
 import com.vorobeyyyyyy.openchat.util.JwtUtils;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.RandomStringUtils;
@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 @AllArgsConstructor
@@ -70,4 +71,14 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByUuid(AuthUtils.getUserUuid());
     }
 
+    @Override
+    public User getCurrentUser() {
+        return userRepository.getById(AuthUtils.getUserUuid());
+    }
+
+    @Override
+    public User getUserEntity(UUID uuid) {
+        return userRepository.findById(uuid)
+                .orElseThrow(ExceptionUtils.notFoundExceptionSupplier(User.class, uuid));
+    }
 }

@@ -71,4 +71,8 @@ public abstract class UuidEntity {
 	@PrePersist
 	protected void prePersist() {
 	}
+
+	public final boolean isNew() {
+		return uuid == null;
+	}
 }

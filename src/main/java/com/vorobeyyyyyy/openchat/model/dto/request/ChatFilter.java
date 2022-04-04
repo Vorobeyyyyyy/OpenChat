@@ -1,4 +1,4 @@
-package com.vorobeyyyyyy.openchat.model.dto;
+package com.vorobeyyyyyy.openchat.model.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

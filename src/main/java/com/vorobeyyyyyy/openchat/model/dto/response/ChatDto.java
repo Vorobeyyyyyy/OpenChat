@@ -1,4 +1,4 @@
-package com.vorobeyyyyyy.openchat.model.dto;
+package com.vorobeyyyyyy.openchat.model.dto.response;
 
 import com.vorobeyyyyyy.openchat.model.enumerated.ChatType;
 import lombok.AllArgsConstructor;

@@ -2,13 +2,12 @@ package com.vorobeyyyyyy.openchat.service.impl;
 
 import com.vorobeyyyyyy.openchat.config.OpenChatProperties;
 import com.vorobeyyyyyy.openchat.exception.TooFrequentSendCodeException;
-import com.vorobeyyyyyy.openchat.model.dto.SendCodeRequest;
+import com.vorobeyyyyyy.openchat.model.dto.request.SendCodeRequest;
 import com.vorobeyyyyyy.openchat.repository.RedisRepository;
 import com.vorobeyyyyyy.openchat.service.PhoneVerificationService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
-import org.apache.commons.lang3.RandomUtils;
 import org.springframework.stereotype.Service;
 
 @Service

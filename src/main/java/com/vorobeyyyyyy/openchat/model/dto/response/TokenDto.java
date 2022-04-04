@@ -1,4 +1,4 @@
-package com.vorobeyyyyyy.openchat.model.dto;
+package com.vorobeyyyyyy.openchat.model.dto.response;
 
 import lombok.Builder;
 import lombok.Data;

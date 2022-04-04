@@ -18,7 +18,6 @@ public class AuthUtils {
 
     public static AuthInformation getAuthInformation() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        AuthInformation authInformation = (AuthInformation) authentication.getPrincipal();
-        return authInformation;
+        return (AuthInformation) authentication.getPrincipal();
     }
 }

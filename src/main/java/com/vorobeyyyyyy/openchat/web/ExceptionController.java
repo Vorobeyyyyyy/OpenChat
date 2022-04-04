@@ -1,8 +1,7 @@
 package com.vorobeyyyyyy.openchat.web;
 
 import com.vorobeyyyyyy.openchat.exception.BaseException;
-import com.vorobeyyyyyy.openchat.exception.WrongCodeException;
-import com.vorobeyyyyyy.openchat.model.dto.ExceptionDto;
+import com.vorobeyyyyyy.openchat.model.dto.response.ExceptionDto;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpHeaders;

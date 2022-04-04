@@ -1,9 +1,9 @@
 package com.vorobeyyyyyy.openchat.web;
 
-import com.vorobeyyyyyy.openchat.model.dto.LoginRequestDto;
-import com.vorobeyyyyyy.openchat.model.dto.SendCodeRequest;
-import com.vorobeyyyyyy.openchat.model.dto.TokenDto;
-import com.vorobeyyyyyy.openchat.model.dto.UserDto;
+import com.vorobeyyyyyy.openchat.model.dto.request.LoginRequestDto;
+import com.vorobeyyyyyy.openchat.model.dto.request.SendCodeRequest;
+import com.vorobeyyyyyy.openchat.model.dto.response.TokenDto;
+import com.vorobeyyyyyy.openchat.model.dto.response.UserDto;
 import com.vorobeyyyyyy.openchat.service.PhoneVerificationService;
 import com.vorobeyyyyyy.openchat.service.UserService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
