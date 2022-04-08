@@ -6,6 +6,7 @@ import org.springframework.stereotype.Component;
 
 import lombok.Data;
 
+import java.net.URI;
 import java.time.Duration;
 
 @EnableConfigurationProperties
@@ -15,6 +16,8 @@ import java.time.Duration;
 public class OpenChatProperties {
 
 	private Security security;
+
+	private Storage storage;
 
 	@Data
 	public static class Security {
@@ -31,5 +34,17 @@ public class OpenChatProperties {
 			private Duration expiration;
 		}
 
+	}
+
+	@Data
+	public static class Storage {
+
+		private URI endpoint;
+
+		private String accessKey;
+
+		private String secretKey;
+
+		private String bucketName;
 	}
 }

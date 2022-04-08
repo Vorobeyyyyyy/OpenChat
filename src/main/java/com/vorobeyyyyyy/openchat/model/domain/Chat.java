@@ -53,6 +53,12 @@ public class Chat extends UuidEntity implements AccessibleEntity {
     @OneToOne(mappedBy = "chat")
     private Media image;
 
+    @OneToMany(mappedBy = "chat", cascade = CascadeType.REMOVE)
+    private List<Message> messages;
+
+    @Column(name = "is_public", columnDefinition = "boolean default false", nullable = false)
+    private boolean isPublic = false;
+
     @Override
     protected void prePersist() {
         super.prePersist();
@@ -70,7 +76,21 @@ public class Chat extends UuidEntity implements AccessibleEntity {
     }
 
     @Override
-    public boolean canBeModifiedBy(User currentUser) {
-        return uuid == null || owner.equals(currentUser) || moderators.contains(currentUser);
+    public boolean canBeModifiedBy(User user) {
+        return uuid == null || owner.equals(user) || moderators.contains(user);
+    }
+
+    @Override
+    public boolean canBeDeletedBy(User user) {
+        return uuid == null
+                || owner.equals(user)
+                || (type == ChatType.PRIVATE && users.contains(user));
+    }
+
+    public boolean canSendMessages(User user) {
+        return uuid == null
+                || owner.equals(user)
+                || (type == ChatType.PRIVATE && users.contains(user))
+                || (type == ChatType.CHANNEL && moderators.contains(user));
     }
 }

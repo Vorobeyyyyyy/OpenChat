@@ -1,6 +1,7 @@
 package com.vorobeyyyyyy.openchat.service;
 
 import com.vorobeyyyyyy.openchat.model.domain.Chat;
+import com.vorobeyyyyyy.openchat.model.domain.Message;
 import com.vorobeyyyyyy.openchat.model.dto.request.MessageFilter;
 import com.vorobeyyyyyy.openchat.model.dto.request.UpdateMessageDto;
 import com.vorobeyyyyyy.openchat.model.dto.response.ChatDto;
@@ -28,4 +29,8 @@ public interface ChatService {
     void deleteMessage(UUID chatUuid, UUID messageUuid);
 
     Chat getChatEntity(UUID chatUuid);
+
+    Message getMessageEntity(UUID chatUuid, UUID messageUuid);
+
+    Message getMessageEntity(UUID messageUuid);
 }

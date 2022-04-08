@@ -14,7 +14,11 @@ public interface MediaService {
 
     ResponseEntity<StreamingResponseBody> download(UUID mediaUuid);
 
+    Media findMediaInternal(UUID mediaUuid);
+
     ResponseEntity<StreamingResponseBody> downloadThumbnail(UUID mediaUuid);
 
     Media findImage(UUID imageMediaUuid);
+
+    Media findUnusedMedia(UUID attachmentMediaUuid);
 }

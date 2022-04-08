@@ -72,6 +72,10 @@ public abstract class UuidEntity {
 	protected void prePersist() {
 	}
 
+	@PreUpdate
+	protected void preUpdate() {
+	}
+
 	public final boolean isNew() {
 		return uuid == null;
 	}

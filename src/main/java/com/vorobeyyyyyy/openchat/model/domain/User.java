@@ -30,13 +30,11 @@ public class User extends UuidEntity {
 	@Column(name = "role")
 	private List<Role> roles;
 
-	@ManyToMany
-	@JoinTable(
-			name = "chat_users",
-			joinColumns = @JoinColumn(name = "user_uuid"),
-			inverseJoinColumns = @JoinColumn(name = "chat_uuid")
-	)
+	@ManyToMany(mappedBy = "users")
 	private List<Chat> chats;
+
+	@ManyToMany(mappedBy = "moderators")
+	private List<Chat> moderatedChats;
 
 	@Column(nullable = false)
 	private boolean confirmed = false;

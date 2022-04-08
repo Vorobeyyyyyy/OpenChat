@@ -21,8 +21,13 @@ openchat:
     jwt:
       secret: asfslhoi12418hikljhgfdsa
       expiration: 1d
-
     resend-code-timeout: 1m
+
+  storage:
+    endpoint: http://localhost:7005
+    access-key: ${STORAGE_ACCESS_KEY}
+    secret-key: ${STORAGE_SECRET_KEY}
+    bucket-name: openchat
 
 logging:
   level:

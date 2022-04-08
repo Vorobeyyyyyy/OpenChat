@@ -29,18 +29,15 @@ public interface ChatRepository extends JpaRepository<Chat, UUID>, BaseCustomRep
             builder.and(chat.name.containsIgnoreCase(filter.getName()));
         }
 
-        return toPage(selectFrom(chat, pageable)
-                .where(chat.users.contains(user), builder));
+        return fetchPageWhere(chat, pageable, chat.users.contains(user), builder);
     }
 
     default boolean privateChatExists(List<User> users) {
-        return selectFrom(chat)
-                .where(
-                        chat.type.eq(ChatType.PRIVATE),
-                        chat.users.contains(users.get(0)),
-                        chat.users.contains(users.get(1)),
-                        chat.users.size().eq(2)
-                )
-                .fetchOne() != null;
+        return fetchOneWhere(chat,
+                chat.type.eq(ChatType.PRIVATE),
+                chat.users.contains(users.get(0)),
+                chat.users.contains(users.get(1)),
+                chat.users.size().eq(2)
+        ).isPresent();
     }
 }

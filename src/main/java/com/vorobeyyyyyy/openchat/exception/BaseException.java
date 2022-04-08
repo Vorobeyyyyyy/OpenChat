@@ -18,6 +18,20 @@ public abstract class BaseException extends RuntimeException{
 
     protected Map<String, Object> additionalInfo;
 
+    public BaseException() {
+    }
+
+    public BaseException(int code, String messageKey) {
+        this.code = code;
+        this.messageKey = messageKey;
+    }
+
+    public BaseException(int code, String message, String messageKey) {
+        this.code = code;
+        this.message = message;
+        this.messageKey = messageKey;
+    }
+
     public void addParameter(String key, Object value) {
         if (additionalInfo == null) {
             additionalInfo = new HashMap<>();
