@@ -17,7 +17,7 @@ import static com.vorobeyyyyyy.openchat.util.ExceptionUtils.illegalArgumentExcep
 @Getter
 @Setter
 @EntityListeners(AuditingEntityListener.class)
-public class Chat extends UuidEntity implements AccessibleEntity {
+public class Chat extends UuidEntity implements AccessableEntity {
 
     private String name;
 

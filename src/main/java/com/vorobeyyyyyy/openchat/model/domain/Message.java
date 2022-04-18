@@ -13,7 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 @EntityListeners(AuditingEntityListener.class)
-public class Message extends UuidEntity implements AccessibleEntity {
+public class Message extends UuidEntity implements AccessableEntity {
 
     @ManyToOne
     @JoinColumn(name = "sender_uuid")
@@ -34,15 +34,15 @@ public class Message extends UuidEntity implements AccessibleEntity {
 
     @ManyToOne
     @JoinColumn(name = "reply_to_message_uuid")
-    private Message replyMessage;
+    private Message replyToMessage;
 
     @Override
     public boolean canBeModifiedBy(User user) {
-        return false; // TODO
+        return true; // TODO
     }
 
     @Override
     public boolean canBeDeletedBy(User user) {
-        return false; // TODO
+        return true; // TODO
     }
 }

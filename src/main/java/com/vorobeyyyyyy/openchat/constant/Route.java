@@ -16,4 +16,10 @@ public interface Route {
         String MEDIA_UUID = "/{mediaUuid:" + UUID_REGEX + "}";
         String THUMBNAIL = "/thumbnail";
     }
+
+    interface WebSocket {
+        String WEB_SOCKET = "/ws";
+        String USER = "/user";
+        String CHAT = "/chat";
+    }
 }

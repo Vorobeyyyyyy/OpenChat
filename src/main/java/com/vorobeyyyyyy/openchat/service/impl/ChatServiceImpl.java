@@ -3,7 +3,6 @@ package com.vorobeyyyyyy.openchat.service.impl;
 import com.vorobeyyyyyy.openchat.model.converter.ChatDtoConverter;
 import com.vorobeyyyyyy.openchat.model.converter.MessageDtoConverter;
 import com.vorobeyyyyyy.openchat.model.domain.Chat;
-import com.vorobeyyyyyy.openchat.model.domain.Media;
 import com.vorobeyyyyyy.openchat.model.domain.Message;
 import com.vorobeyyyyyy.openchat.model.domain.User;
 import com.vorobeyyyyyy.openchat.model.dto.request.MessageFilter;
@@ -30,7 +29,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -132,7 +130,7 @@ public class ChatServiceImpl implements ChatService {
                     .ifPresent(message::setRedirectedMessage);
             Optional.ofNullable(messageDto.getReplyMessageUuid())
                     .map(uuid -> getMessageEntity(chatUuid, uuid))
-                    .ifPresent(message::setReplyMessage);
+                    .ifPresent(message::setReplyToMessage);
         }
 
         Optional.ofNullable(messageDto.getAttachmentUuids())
